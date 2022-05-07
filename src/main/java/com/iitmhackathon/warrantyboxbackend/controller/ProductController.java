@@ -59,8 +59,15 @@ public class ProductController {
 
     @GetMapping("/getproducts2")
     public ResponseEntity<?> getproducts2(Principal principal) {
-        List<Product> products = null;
+        List<Product> products = applicationService.getProduct(principal);
 
         return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/getuser")
+    public ResponseEntity<?> getuser(Principal principal) {
+//        List<Product> products = applicationService.getProduct(principal);
+
+        return new ResponseEntity<>(principal.getName(), HttpStatus.OK);
     }
 }

@@ -2,10 +2,7 @@ package com.iitmhackathon.warrantyboxbackend.entity;
 
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,8 +11,8 @@ public class Brand {
     @Id
     private String name;
     private String logo;
-    @ElementCollection
-    private List<String> serialno;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<SerialNoIdentifier> serialno;
     @ElementCollection
     private List<String> location;
     private Float rating;

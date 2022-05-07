@@ -17,5 +17,5 @@ public class Product {
     private LocalDate warranty;
     private String seller;
     private String status;
-    private String user;
+    private String username;
 }
