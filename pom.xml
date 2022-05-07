@@ -22,8 +22,9 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.azure.spring</groupId>
-			<artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>azure-keyvault</artifactId>
+			<version>1.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
