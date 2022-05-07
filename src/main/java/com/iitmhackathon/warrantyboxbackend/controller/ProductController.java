@@ -8,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
@@ -20,40 +19,15 @@ public class ProductController {
     private ApplicationService applicationService;
 
     @GetMapping("/getproducts")
-    public ResponseEntity<?> getproducts() {
-        List<Product> products = new ArrayList<>();
-        Product p1 = new Product();
-        p1.setBrand("Samsung");
-        p1.setInvoiceNo("123ABCGHIK");
-        p1.setSeller("Amazon");
-        p1.setStatus("None");
-        p1.setModel("Galaxy S10");
-        p1.setWarranty("11-05-1999");
-        Product p2 = new Product();
-        p2.setBrand("Apple");
-        p2.setInvoiceNo("123ZYAZQW");
-        p2.setModel("iphone 12 pro");
-        p2.setSeller("Flipkart");
-        p2.setStatus("None");
-        p2.setWarranty("11-05-1999");
-        Product p3 = new Product();
-        p3.setBrand("Mi");
-        p3.setInvoiceNo("123ABYS23");
-        p3.setModel("TV");
-        p3.setSeller("Poorvika");
-        p3.setStatus("None");
-        p3.setWarranty("11-05-1999");
-
-        products.add(p1);
-        products.add(p2);
-        products.add(p3);
+    public ResponseEntity<?> getproducts(Principal principal) {
+        List<Product> products = applicationService.getProduct(principal);
 
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @PostMapping("/addproducts")
-    public ResponseEntity<?> addProducts(@RequestBody  List<Product> products) {
-
+    @PostMapping("/addproduct")
+    public ResponseEntity<?> addProduct(Principal principal,@RequestBody  Product products) {
+        applicationService.addProduct(principal,products);
         return new ResponseEntity<>("Products added", HttpStatus.CREATED);
     }
 

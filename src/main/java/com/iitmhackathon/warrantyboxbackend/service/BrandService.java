@@ -26,4 +26,8 @@ public class BrandService {
         return brandRepository.save(brand);
     }
 
+    public Brand getBrand(String name){
+        return brandRepository.getById(name);
+    }
+
 }

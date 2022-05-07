@@ -2,8 +2,12 @@ package com.iitmhackathon.warrantyboxbackend.service;
 
 import com.iitmhackathon.warrantyboxbackend.entity.Brand;
 import com.iitmhackathon.warrantyboxbackend.entity.Product;
+import com.iitmhackathon.warrantyboxbackend.entity.SerialNoIdentifier;
+import com.iitmhackathon.warrantyboxbackend.exception.NotFoundException;
 import com.iitmhackathon.warrantyboxbackend.model.UserModel;
+import com.iitmhackathon.warrantyboxbackend.repository.SerialNoRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -19,10 +23,14 @@ public class ApplicationService {
 
     private BrandService brandService;
 
-    public ApplicationService(ApplicationUserDetailsService applicationUserDetailsService, ProductService productService, BrandService brandService) {
+    private SerialNoRepository serialNoRepository;
+
+    @Autowired
+    public ApplicationService(ApplicationUserDetailsService applicationUserDetailsService, ProductService productService, BrandService brandService, SerialNoRepository serialNoRepository) {
         this.applicationUserDetailsService = applicationUserDetailsService;
         this.productService = productService;
         this.brandService = brandService;
+        this.serialNoRepository = serialNoRepository;
     }
 
     /**
@@ -44,6 +52,28 @@ public class ApplicationService {
 
     public Brand addBrand(Brand brand){
         return brandService.addBrand(brand);
+    }
+
+    public void addProduct(Principal principal , Product product){
+
+        String serialNo = product.getInvoiceNo();
+
+
+        if(! serialNoRepository.existsById(serialNo)){
+            throw new NotFoundException("Invalid Invoice");
+        }
+
+        SerialNoIdentifier serialNoIdentifier = serialNoRepository.getById(serialNo);
+
+        Brand brand = brandService.getBrand(serialNoIdentifier.getBrandName());
+
+        product.setBrand(brand.getName());
+        product.setModel(serialNoIdentifier.getModel());
+        product.setUsername(principal.getName());
+        product.setStatus("None");
+        product.setWarranty(serialNoIdentifier.getWarranty());
+
+        productService.addProduct(product);
     }
 
 }

@@ -21,4 +21,8 @@ public class ProductService {
 
         return productRepository.findProductsByUsername(username);
     }
+
+    public void addProduct(Product product){
+        productRepository.save(product);
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +65,12 @@ public class DummyController {
     public ResponseEntity<?> addBrand(@RequestBody  Brand brand){
 
         return new ResponseEntity<>(applicationService.addBrand(brand), HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("/addproduct")
+    public ResponseEntity<?> addProduct(Principal principal, @RequestBody  Product products) {
+        applicationService.addProduct(principal,products);
+        return new ResponseEntity<>("Products added", HttpStatus.CREATED);
     }
 }
