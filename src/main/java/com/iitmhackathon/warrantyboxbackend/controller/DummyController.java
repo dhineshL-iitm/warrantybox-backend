@@ -1,6 +1,9 @@
 package com.iitmhackathon.warrantyboxbackend.controller;
 
+import com.iitmhackathon.warrantyboxbackend.entity.Brand;
 import com.iitmhackathon.warrantyboxbackend.entity.Product;
+import com.iitmhackathon.warrantyboxbackend.service.ApplicationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/dummy/v1/user")
 public class DummyController {
+
+    private ApplicationService applicationService;
+
+    @Autowired
+    public DummyController(ApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
+
     @GetMapping("/getproducts")
     public ResponseEntity<?> getproducts() {
         List<Product> products = new ArrayList<>();
@@ -48,5 +59,11 @@ public class DummyController {
     public ResponseEntity<?> addProducts(@RequestBody List<Product> products) {
 
         return new ResponseEntity<>("Products added", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/addbrand")
+    public ResponseEntity<?> addBrand(@RequestBody  Brand brand){
+
+        return new ResponseEntity<>(applicationService.addBrand(brand), HttpStatus.CREATED);
     }
 }
