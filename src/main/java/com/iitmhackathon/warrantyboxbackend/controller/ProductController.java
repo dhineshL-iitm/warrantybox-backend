@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("api/v1")
+@RestController("api/v1/user")
 public class ProductController {
 
     @GetMapping("/getproducts")
