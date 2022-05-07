@@ -14,7 +14,7 @@ public class Product {
     private String invoiceNo;
     private String brand;
     private String model;
-    private LocalDate warranty;
+    private String warranty;
     private String seller;
     private String status;
     private String username;

@@ -15,9 +15,6 @@ public class SerialNoIdentifier {
     @Id
     private String serialNo;
     private String model;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate localDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate warrantyTime;
-
+    private String localDate;
+    private String warranty;
 }
