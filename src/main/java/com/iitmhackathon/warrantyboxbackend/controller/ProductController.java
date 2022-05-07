@@ -28,21 +28,21 @@ public class ProductController {
         p1.setSeller("Amazon");
         p1.setStatus("None");
         p1.setModel("Galaxy S10");
-        p1.setWarranty(LocalDate.of(2021,11,01));
+        p1.setWarranty("11-05-1999");
         Product p2 = new Product();
         p2.setBrand("Apple");
         p2.setInvoiceNo("123ZYAZQW");
         p2.setModel("iphone 12 pro");
         p2.setSeller("Flipkart");
         p2.setStatus("None");
-        p2.setWarranty(LocalDate.of(2019,2,23));
+        p2.setWarranty("11-05-1999");
         Product p3 = new Product();
         p3.setBrand("Mi");
         p3.setInvoiceNo("123ABYS23");
         p3.setModel("TV");
         p3.setSeller("Poorvika");
         p3.setStatus("None");
-        p3.setWarranty(LocalDate.now());
+        p3.setWarranty("11-05-1999");
 
         products.add(p1);
         products.add(p2);
