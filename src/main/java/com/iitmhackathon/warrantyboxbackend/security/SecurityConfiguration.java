@@ -41,11 +41,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/register.html","/login.html","/css/**","/fonts/**","/images/**","/js/**").permitAll()
-                .antMatchers("/","/*.html").hasRole("USER")
+                .antMatchers("/","/register","/login.html","/css/**","/fonts/**","/images/**","/js/**").permitAll()
+                .antMatchers("/api/v1").hasRole("USER")
                 .and()
                 .formLogin()
-                .loginPage("/login.html")
                 .loginProcessingUrl("/user/login")
                 .passwordParameter("password")
                 .usernameParameter("username")
@@ -61,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/");
+
     }
 
     /**
