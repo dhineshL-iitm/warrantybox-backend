@@ -1,12 +1,10 @@
 package com.iitmhackathon.warrantyboxbackend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Data
 @Entity
@@ -17,4 +15,5 @@ public class SerialNoIdentifier {
     private String model;
     private String localDate;
     private String warranty;
+    private String brandName;
 }
