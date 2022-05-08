@@ -14,7 +14,13 @@ public class Utility {
         applicationUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
 
         applicationUser.setEnabled(true);
-        applicationUser.setRoles("ROLE_USER");
+
+        if("Brand".equalsIgnoreCase(userModel.getType())) {
+            applicationUser.setRoles("ROLE_BRAND");
+        }
+
+        else applicationUser.setRoles("ROLE_USER");
+
         applicationUser.setAccountNonExpired(true);
         applicationUser.setAccountNonLocked(true);
         applicationUser.setCredentialsNonExpired(true);
