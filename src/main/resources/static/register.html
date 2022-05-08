@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)]><!-->
+<html lang="en" class="no-js">
+  <!-- moviegrid07:29-->
+  <head>
+    <!-- Basic need -->
+    <title>Register</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="profile" href="#" />
+
+    <!--Google Font-->
+    <link
+      rel="stylesheet"
+      href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600"
+    />
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone-no" />
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="alert hide">
+      <span class="fas fa-exclamation-circle"></span>
+      <span class="msg">Username taken !</span>
+      <div class="close-btn">
+        <span class="fas fa-times"></span>
+      </div>
+    </div>
+    <div class="login-page">
+      <div class="form">
+        <form class="login-form" id="register-form">
+          <h2 class="form-signin-heading">Register</h2>
+          <p>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Username"
+              required=""
+              autofocus=""
+            />
+          </p>
+          <p>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required=""
+            />
+          </p>
+          <p>
+            <label for="type">Choose a type:</label>
+            <select name="type" id="type" class="form-control">
+              <option value="user">User</option>
+              <option value="brand">Brand</option>
+            </select>
+          </p>
+          <button
+            class="btn btn-lg btn-primary btn-block"
+            type="submit"
+            id="sumbitbutton"
+          >
+            Register
+          </button>
+          <p class="message">Registered? <a href="/login.html">Log In</a></p>
+        </form>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modal-message">Model</p>
+      </div>
+    </div>
+
+    <script src="js/easyhttp2.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

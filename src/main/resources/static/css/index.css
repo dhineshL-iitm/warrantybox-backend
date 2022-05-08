@@ -1,0 +1,43 @@
+html {
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body {
+  background: transparent;
+}
+div.polaroid {
+  display: inline-block;
+}
+.navbar-nav > li {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.star-container {
+  padding: 7%;
+}
+
+.starcolor {
+  color: orange;
+}
+
+p {
+  text-align: center;
+  font-family: 'Lucida Console', 'Courier New', monospace;
+  font-size: large;
+  color: #fff;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+#tvshow {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
