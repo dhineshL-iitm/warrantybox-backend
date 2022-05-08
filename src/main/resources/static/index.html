@@ -14,6 +14,35 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <style>
+      .login__container {
+        background-color: #fc975d;
+      }
+      .login__box {
+        text-align: center;
+        align-items: flex-end;
+        position: relative;
+        width: 80vw;
+        top: 50%;
+        left: 50%;
+        color: #2892d7;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 10%;
+        border-radius: 20px;
+        box-shadow: 10px 20px 50px rgb(2, 2, 2);
+        max-width: 600px;
+        margin-left: 100px;
+      }
+      .leftside {
+        height: 100vh;
+      }
+
+      .leftside > p {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
     <title>Home</title>
   </head>
   <body>
@@ -48,11 +77,37 @@
         </div>
       </nav>
     </div>
-    <div class="container">
-      <h2 class="row col justify-content-md-center">
-        Welcome to Warranty Box We handle all your warranty claims seamlessly
-        and keep you tension free Feel free to sign in
-      </h2>
+    <div class="login__container container-fluid row">
+      <div class="leftside col-lg-6">
+        <div class="class1">
+          <div>
+            <img
+              alt="titleImage"
+              src="images/image-work.jpeg"
+              class="title__image"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="rightside col-lg-6">
+        <div class="login__box">
+          <h2>
+            <h1 style="color: #fc975d">Warranty Box</h1>
+            <br />
+            <h4>
+              Maintaining all of your assets and Warranty claims in a single
+              platform
+            </h4>
+          </h2>
+        </div>
+      </div>
     </div>
+    <script src="js/easyhttp2.js"></script>
+    <script>
+      const api = new EasyHTTP()
+      const tvshowsdata = api.get(url).then((data) => {
+        console.log(data)
+      })
+    </script>
   </body>
 </html>
