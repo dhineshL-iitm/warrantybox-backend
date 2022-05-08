@@ -60,4 +60,14 @@ public class ApplicationUserDetailsService implements UserDetailsService {
         userRepository.save(applicationUser);
 
     }
+
+    public String getUserType(String username){
+        Optional<ApplicationUser> user = userRepository.findByUsername(username);
+
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException(String.format("Username %s not found",username));
+        }
+
+        return user.get().getRoles();
+    }
 }

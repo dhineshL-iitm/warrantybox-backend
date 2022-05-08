@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -76,4 +77,42 @@ public class ApplicationService {
         productService.addProduct(product);
     }
 
+    public void raiseTicket(String invoiceno, String issue){
+        Optional<Product> productOpt = productService.getProductById(invoiceno);
+        if(productOpt.isEmpty()){
+            throw new NotFoundException("Invalid Invoice");
+        }
+        Product product = productOpt.get();
+        product.setSeller(issue);
+        product.setStatus("TICKET");
+
+        productService.addProduct(product);
+    }
+
+    public List<Product> getTickets(Principal principal){
+
+        return productService.getTickets("TICKET",principal.getName());
+    }
+
+    public String getRoles(Principal principal){
+        System.out.println(principal+" "+ principal.getName());
+        return applicationUserDetailsService.getUserType(principal.getName());
+    }
+
+    public List<Product> getTicketsByBrand(Principal principal){
+
+        return productService.getTicketsByBrand("TICKET",principal.getName());
+    }
+
+    public void resolveTicket(String invoiceno){
+        Optional<Product> productOpt = productService.getProductById(invoiceno);
+        if(productOpt.isEmpty()){
+            throw new NotFoundException("Invalid Invoice");
+        }
+        Product product = productOpt.get();
+        product.setSeller("");
+        product.setStatus("RESOLVED");
+
+        productService.addProduct(product);
+    }
 }
