@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -24,5 +25,19 @@ public class ProductService {
 
     public void addProduct(Product product){
         productRepository.save(product);
+    }
+
+    public Optional<Product> getProductById(String id){
+        return productRepository.findById(id);
+    }
+
+    public List<Product> getTickets(String status, String username){
+
+        return productRepository.findProductsByStatusAndUsername(status,username);
+    }
+
+    public List<Product> getTicketsByBrand(String status, String brand){
+
+        return productRepository.findProductsByStatusAndBrand(status,brand);
     }
 }

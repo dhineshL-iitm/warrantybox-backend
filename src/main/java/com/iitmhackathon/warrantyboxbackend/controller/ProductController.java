@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-
 import java.util.List;
 
 @RestController
@@ -40,8 +39,13 @@ public class ProductController {
 
     @GetMapping("/getuser")
     public ResponseEntity<?> getuser(Principal principal) {
-//        List<Product> products = applicationService.getProduct(principal);
 
         return new ResponseEntity<>(principal.getName(), HttpStatus.OK);
+    }
+
+    @PutMapping("/raiseticket")
+    public ResponseEntity<?> raiseTicket(@RequestParam("invoiceNo") String invoice,@RequestParam("issue") String issue){
+        applicationService.raiseTicket(invoice,issue);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
