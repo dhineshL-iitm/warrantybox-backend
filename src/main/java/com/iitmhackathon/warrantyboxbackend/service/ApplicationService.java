@@ -60,8 +60,7 @@ public class ApplicationService {
 
         String serialNo = product.getInvoiceNo();
 
-
-        if(serialNoRepository.existsById(serialNo)){
+        if(productService.existsById(serialNo)){
             throw new NotFoundException("Invalid Invoice");
         }
 
@@ -73,6 +72,7 @@ public class ApplicationService {
         product.setModel(serialNoIdentifier.getModel());
         product.setUsername(principal.getName());
         product.setStatus("None");
+        product.setSeller("");
         product.setWarranty(serialNoIdentifier.getWarranty());
 
         productService.addProduct(product);
@@ -117,7 +117,9 @@ public class ApplicationService {
         productService.addProduct(product);
     }
 
-    public void saveOrUpdateSerialNo(SerialNoIdentifier serialNoIdentifier){
+    public void saveOrUpdateSerialNo(Principal principal,SerialNoIdentifier serialNoIdentifier){
+        if(serialNoRepository.existsById(serialNoIdentifier.getSerialNo())) throw new NotFoundException("Id taken");
+        serialNoIdentifier.setBrandName(principal.getName());
         serialNoRepository.save(serialNoIdentifier);
     }
 

@@ -27,9 +27,9 @@ public class BrandController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/addSerialNo")
-    public ResponseEntity<?> addSerialNo(@RequestBody SerialNoIdentifier serialNoIdentifier){
-        applicationService.saveOrUpdateSerialNo(serialNoIdentifier);
+    @PostMapping("/addserialno")
+    public ResponseEntity<?> addSerialNo(Principal principal,@RequestBody SerialNoIdentifier serialNoIdentifier){
+        applicationService.saveOrUpdateSerialNo(principal,serialNoIdentifier);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
