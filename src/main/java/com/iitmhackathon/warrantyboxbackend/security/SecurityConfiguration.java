@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/swagger-ui/**","/dummy/**","/register","/login.html","/register.html","/css/**","/fonts/**","/images/**","/js/**").permitAll()
                 .antMatchers("/").authenticated()
                 .antMatchers("/api/v1/user/**","/dashboard.html").hasRole("USER")
-                .antMatchers("/api/v1/brand/**","/ticket.html").hasRole("BRAND")
+                .antMatchers("/api/v1/brand/**","/ticket.html","/product.html").hasRole("BRAND")
                 .and()
                 .formLogin()
                 .loginPage("/login.html")
