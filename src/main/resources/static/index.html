@@ -69,6 +69,11 @@
               <li class="nav-item" id="ticket">
                 <a class="nav-link text-white" href="/ticket.html">Ticket</a>
               </li>
+              <li class="nav-item" id="addproduct">
+                <a class="nav-link text-white" href="/addproduct.html"
+                  >Add Product</a
+                >
+              </li>
               <li class="nav-item" id="product">
                 <a class="nav-link text-white" href="/product.html">Product</a>
               </li>
@@ -121,6 +126,7 @@
       if (usertype == 'ROLE_USER') {
         document.getElementById('ticket').style.display = 'none'
         document.getElementById('product').style.display = 'none'
+        document.getElementById('addproduct').style.display = 'none'
       }
       if (usertype == 'ROLE_BRAND') {
         document.getElementById('dashboard').style.display = 'none'
