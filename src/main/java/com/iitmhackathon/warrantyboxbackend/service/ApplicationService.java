@@ -60,7 +60,7 @@ public class ApplicationService {
         String serialNo = product.getInvoiceNo();
 
 
-        if(! serialNoRepository.existsById(serialNo)){
+        if(serialNoRepository.existsById(serialNo)){
             throw new NotFoundException("Invalid Invoice");
         }
 
