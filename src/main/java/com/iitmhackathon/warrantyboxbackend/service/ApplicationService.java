@@ -1,5 +1,6 @@
 package com.iitmhackathon.warrantyboxbackend.service;
 
+import com.iitmhackathon.warrantyboxbackend.entity.ApplicationUser;
 import com.iitmhackathon.warrantyboxbackend.entity.Brand;
 import com.iitmhackathon.warrantyboxbackend.entity.Product;
 import com.iitmhackathon.warrantyboxbackend.entity.SerialNoIdentifier;
@@ -96,7 +97,7 @@ public class ApplicationService {
 
     public String getRoles(Principal principal){
         System.out.println(principal+" "+ principal.getName());
-        return applicationUserDetailsService.getUserType(principal.getName());
+        return applicationUserDetailsService.getUser(principal.getName()).getRoles();
     }
 
     public List<Product> getTicketsByBrand(Principal principal){
@@ -118,5 +119,19 @@ public class ApplicationService {
 
     public void saveOrUpdateSerialNo(SerialNoIdentifier serialNoIdentifier){
         serialNoRepository.save(serialNoIdentifier);
+    }
+
+    public List<SerialNoIdentifier> getAllSerialNoByBrand(Principal principal){
+        return serialNoRepository.findAllByBrandName(principal.getName());
+    }
+
+    public UserModel getUser(Principal principal){
+        System.out.println(principal+" "+ principal.getName());
+        ApplicationUser user = applicationUserDetailsService.getUser(principal.getName());
+        UserModel userModel = new UserModel();
+        userModel.setUsername(user.getUsername());
+        userModel.setType(user.getRoles());
+
+        return userModel;
     }
 }

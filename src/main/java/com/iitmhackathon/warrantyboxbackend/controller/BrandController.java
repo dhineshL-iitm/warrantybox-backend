@@ -32,4 +32,9 @@ public class BrandController {
         applicationService.saveOrUpdateSerialNo(serialNoIdentifier);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/getserialno")
+    public ResponseEntity<?> getSerialNo(Principal principal){
+        return new ResponseEntity<>(applicationService.getAllSerialNoByBrand(principal),HttpStatus.OK);
+    }
 }
