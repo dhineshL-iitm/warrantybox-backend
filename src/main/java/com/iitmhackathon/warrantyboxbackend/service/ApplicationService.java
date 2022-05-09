@@ -115,4 +115,8 @@ public class ApplicationService {
 
         productService.addProduct(product);
     }
+
+    public void saveOrUpdateSerialNo(SerialNoIdentifier serialNoIdentifier){
+        serialNoRepository.save(serialNoIdentifier);
+    }
 }

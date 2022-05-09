@@ -1,5 +1,6 @@
 package com.iitmhackathon.warrantyboxbackend.controller;
 
+import com.iitmhackathon.warrantyboxbackend.entity.SerialNoIdentifier;
 import com.iitmhackathon.warrantyboxbackend.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,4 +27,9 @@ public class BrandController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/addSerialNo")
+    public ResponseEntity<?> addSerialNo(@RequestBody SerialNoIdentifier serialNoIdentifier){
+        applicationService.saveOrUpdateSerialNo(serialNoIdentifier);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
