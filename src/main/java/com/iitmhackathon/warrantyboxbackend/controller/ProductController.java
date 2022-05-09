@@ -26,6 +26,7 @@ public class ProductController {
 
     @PostMapping("/addproduct")
     public ResponseEntity<?> addProduct(Principal principal,@RequestBody  Product products) {
+        System.out.println("serailno");
         applicationService.addProduct(principal,products);
         return new ResponseEntity<>("Products added", HttpStatus.CREATED);
     }

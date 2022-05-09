@@ -40,4 +40,8 @@ public class ProductService {
 
         return productRepository.findProductsByStatusAndBrand(status,brand);
     }
+
+    public boolean existsById(String id){
+        return productRepository.existsById(id);
+    }
 }
