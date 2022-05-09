@@ -61,12 +61,12 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+              <li class="nav-item" id="dashboard">
                 <a class="nav-link text-white" href="/dashboard.html"
                   >Dashboard</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="ticket">
                 <a class="nav-link text-white" href="/ticket.html">Ticket</a>
               </li>
             </ul>
@@ -102,12 +102,21 @@
         </div>
       </div>
     </div>
-    <script src="js/easyhttp2.js"></script>
     <script>
-      const api = new EasyHTTP()
-      const tvshowsdata = api.get(url).then((data) => {
-        console.log(data)
-      })
+      function httpGet(theUrl) {
+        var xmlHttp = new XMLHttpRequest()
+        xmlHttp.open('GET', theUrl, false) // false for synchronous request
+        xmlHttp.send(null)
+        return xmlHttp.responseText
+      }
+
+      const usertype = httpGet(window.location.origin + '/api/v1/getusertype')
+      if (usertype == 'ROLE_USER') {
+        document.getElementById('ticket').style.display = 'none'
+      }
+      if (usertype == 'ROLE_BRAND') {
+        document.getElementById('dashboard').style.display = 'none'
+      }
     </script>
   </body>
 </html>
