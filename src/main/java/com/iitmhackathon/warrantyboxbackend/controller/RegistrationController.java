@@ -39,4 +39,11 @@ public class RegistrationController {
         return new ResponseEntity<>(applicationService.getRoles(principal),HttpStatus.OK);
     }
 
+    @GetMapping(value="/api/v1/getuser")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_BRAND')")
+    public ResponseEntity<?> getUser(Principal principal){
+
+        return new ResponseEntity<>(applicationService.getUser(principal),HttpStatus.OK);
+    }
+
 }
