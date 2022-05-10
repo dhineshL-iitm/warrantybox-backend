@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'warrantybox-b'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_833C0074151249F5A5E9415BE3E19990 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1AD2CBF30FEB4C63832BB5C77E3B199A }}
           package: '*.jar'
