@@ -15,18 +15,18 @@
   <name>warrantybox-backend</name>  
   <description>Hackathon project for Spring Boot</description>  
   <properties> 
-    <java.version>11</java.version> 
+    <java.version>11</java.version>
   </properties>  
   <dependencies> 
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-web</artifactId> 
-    </dependency>  
-    <dependency> 
-      <groupId>com.microsoft.azure</groupId>  
-      <artifactId>azure-keyvault</artifactId>  
-      <version>1.2.0</version> 
-    </dependency>  
+    </dependency>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-security-keyvault-secrets</artifactId>
+      <version>4.4.1</version>
+    </dependency>
     <dependency> 
       <groupId>org.projectlombok</groupId>  
       <artifactId>lombok</artifactId>  
@@ -68,7 +68,7 @@
       <artifactId>springfox-swagger-ui</artifactId>
       <version>2.9.2</version>
     </dependency>
-  </dependencies>  
+  </dependencies>
   <build> 
     <plugins> 
       <plugin> 
