@@ -13,6 +13,8 @@ public class Utility {
         // Encoding password
         applicationUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
 
+        applicationUser.setEmail(userModel.getEmail());
+
         applicationUser.setEnabled(true);
 
         if("Brand".equalsIgnoreCase(userModel.getType())) {
