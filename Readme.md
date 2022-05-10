@@ -22,11 +22,12 @@ manages warranty and tickets for product defects
 1. git clone https://github.com/dhineshL-iitm/warrantybox-backend.git
 2. git checkout main 
 3. go to application.properties in src/main/java/resource folder
-4. configure your database connection and smtp connection
-5. mvn install
-6. mvn spring-boot:run 
-7. go to http://localhost:8080/
-8. If the service is running you should see a login page
+4. remove the ${properties} in the file 
+5. configure your database connection and smtp connection in the properties file
+6. mvn install
+7. mvn spring-boot:run 
+8. go to http://localhost:8080/
+9. If the service is running you should see a login page
 
 
 ### Architecture
