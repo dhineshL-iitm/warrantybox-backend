@@ -7,6 +7,7 @@ import com.iitmhackathon.warrantyboxbackend.entity.SerialNoIdentifier;
 import com.iitmhackathon.warrantyboxbackend.exception.NotFoundException;
 import com.iitmhackathon.warrantyboxbackend.model.UserModel;
 import com.iitmhackathon.warrantyboxbackend.repository.SerialNoRepository;
+import com.iitmhackathon.warrantyboxbackend.util.EmailUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,15 @@ public class ApplicationService {
 
     private SerialNoRepository serialNoRepository;
 
+    private EmailSenderService emailSenderService;
+
     @Autowired
-    public ApplicationService(ApplicationUserDetailsService applicationUserDetailsService, ProductService productService, BrandService brandService, SerialNoRepository serialNoRepository) {
+    public ApplicationService(ApplicationUserDetailsService applicationUserDetailsService, ProductService productService, BrandService brandService, SerialNoRepository serialNoRepository, EmailSenderService emailSenderService) {
         this.applicationUserDetailsService = applicationUserDetailsService;
         this.productService = productService;
         this.brandService = brandService;
         this.serialNoRepository = serialNoRepository;
+        this.emailSenderService = emailSenderService;
     }
 
     /**
@@ -44,7 +48,7 @@ public class ApplicationService {
 
         // Creates user and login
         applicationUserDetailsService.createUser(user);
-
+        emailSenderService.sendSimpleEmail(user.getEmail(),"User Registration", EmailUtil.getWelcomeBody(user.getUsername()));
     }
 
     public List<Product> getProduct(Principal principal){
@@ -78,7 +82,7 @@ public class ApplicationService {
         productService.addProduct(product);
     }
 
-    public void raiseTicket(String invoiceno, String issue){
+    public void raiseTicket(Principal principal , String invoiceno, String issue){
         Optional<Product> productOpt = productService.getProductById(invoiceno);
         if(productOpt.isEmpty()){
             throw new NotFoundException("Invalid Invoice");
@@ -88,6 +92,13 @@ public class ApplicationService {
         product.setStatus("TICKET");
 
         productService.addProduct(product);
+
+        new Thread(() -> {
+            ApplicationUser user = applicationUserDetailsService.getUser(principal.getName());
+            ApplicationUser brand = applicationUserDetailsService.getUser(product.getBrand());
+            emailSenderService.sendSimpleEmail(user.getEmail(),"Ticket Raised", EmailUtil.getRaiseTicketBody(product.getInvoiceNo()));
+            emailSenderService.sendSimpleEmail(brand.getEmail(),"Ticket Raised", EmailUtil.getRaiseTicketBodyBrand(product.getInvoiceNo()));
+        }).start();
     }
 
     public List<Product> getTickets(Principal principal){
@@ -115,6 +126,11 @@ public class ApplicationService {
         product.setStatus("RESOLVED");
 
         productService.addProduct(product);
+
+        new Thread(() -> {
+            ApplicationUser user = applicationUserDetailsService.getUser(product.getUsername());
+            emailSenderService.sendSimpleEmail(user.getEmail(),"Ticket Resolved", EmailUtil.getResolvedBody(product.getInvoiceNo()));
+        }).start();
     }
 
     public void saveOrUpdateSerialNo(Principal principal,SerialNoIdentifier serialNoIdentifier){

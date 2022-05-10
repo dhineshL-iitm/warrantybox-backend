@@ -15,6 +15,8 @@ public class ApplicationUser {
 
     private String password;
 
+    private String email;
+
     private boolean enabled;
 
     private String roles;

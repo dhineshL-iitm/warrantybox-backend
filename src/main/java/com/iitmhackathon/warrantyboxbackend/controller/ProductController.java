@@ -45,8 +45,8 @@ public class ProductController {
     }
 
     @PutMapping("/raiseticket")
-    public ResponseEntity<?> raiseTicket(@RequestParam("invoiceNo") String invoice,@RequestParam("issue") String issue){
-        applicationService.raiseTicket(invoice,issue);
+    public ResponseEntity<?> raiseTicket(Principal principal , @RequestParam("invoiceNo") String invoice,@RequestParam("issue") String issue){
+        applicationService.raiseTicket(principal,invoice,issue);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

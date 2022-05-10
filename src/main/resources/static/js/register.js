@@ -5,12 +5,14 @@ document
   .addEventListener('submit', function (e) {
     const usernamevalue = document.getElementById('username').value,
       passwordvalue = document.getElementById('password').value,
-      typevalue = document.getElementById('type').value
+      typevalue = document.getElementById('type').value,
+      emailvalue = document.getElementById('email').value
 
     data = {
       username: usernamevalue,
       password: passwordvalue,
       type: typevalue,
+      email: emailvalue,
     }
 
     url = window.location.origin + '/register'
