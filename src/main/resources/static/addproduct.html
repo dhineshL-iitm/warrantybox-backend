@@ -39,7 +39,15 @@
       text-decoration: none;
       font-size: 17px;
     }
-
+    
+    .usernameclass {
+      display: inline;
+      position: absolute;
+      right: 8%;
+      pointer-events: none;
+      cursor: default;
+      color: white;
+    }
     .topnav a:hover {
       background-color: #fac001;
       color: black;
@@ -76,6 +84,9 @@
         display: block;
         text-align: left;
       }
+      .usernameclass {
+        right: 15%;
+      }
     }
     </style>
   </head>
@@ -90,7 +101,8 @@
       <a href="/ticket.html">Ticket</a>
       <a href="/addproduct.html">Add Product</a>
       <a href="/product.html">Product</a>
-      <a class="btn btn-danger text-white" id="username" style="float: right;" href="/logout">Logout</a>
+      <a class="usernameclass" id="username"></a>
+      <a class="btn btn-danger text-white" id="logout" style="float: right;" href="/logout">Logout</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
